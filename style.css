@@ -377,20 +377,78 @@ body.dark .contact-item:hover .icon {
 }
 
 /* ================================
-   🌙 THEME TOGGLE BUTTON
+   🌙 THEME TOGGLE SLIDER (IN SIDEBAR)
 ================================ */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  border: none;
-  background: var(--pink-dark);
-  color: #fff;
-  border-radius: 50%;
-  padding: 12px 14px;
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  margin: 20px 20px;
+  padding: 15px 20px;
+  background: rgba(244, 166, 193, 0.1);
+  border-radius: 25px;
+  border: 1px solid rgba(244, 166, 193, 0.2);
+}
+
+.theme-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+.theme-slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.theme-slider input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
   cursor: pointer;
-  font-size: 1.2rem;
-  z-index: 1100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--pink-dark);
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--pink-accent);
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+/* Dark mode slider colors */
+body.dark .slider {
+  background-color: var(--pink-accent);
+}
+
+body.dark input:checked + .slider {
+  background-color: var(--pink-dark);
 }
 
 /* ================================
@@ -502,7 +560,7 @@ body.dark .contact-item:hover .icon {
   }
 
   .nav-links a:first-of-type {
-    margin-top: 0; /* Remove extra spacing since sidebar overlaps header */
+    margin-top: 10px; /* Small space after theme toggle */
   }
 
   .nav-links a:hover {
@@ -633,7 +691,7 @@ body.dark .contact-item:hover .icon {
   }
 
   .nav-links a:first-of-type {
-    margin-top: 0;
+    margin-top: 10px; /* Small space after theme toggle */
   }
 
   .nav-links a:hover {

@@ -1,16 +1,22 @@
 const body = document.body;
-const toggle = document.querySelector(".theme-toggle");
+const themeCheckbox = document.getElementById('theme-checkbox');
+const themeIcon = document.getElementById('theme-icon');
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const navLinks = document.getElementById('nav-links');
 const closeBtn = document.getElementById('close-btn');
 const overlay = document.getElementById('overlay');
 
 /* Theme Toggle */
-toggle.addEventListener("click", () => {
+themeCheckbox.addEventListener("change", () => {
   body.classList.toggle("dark");
   body.classList.toggle("light");
-  toggle.textContent = body.classList.contains("dark") ? "🔆" : "🌙";
+  themeIcon.textContent = body.classList.contains("dark") ? "🔆" : "🌙";
+  themeCheckbox.checked = body.classList.contains("dark");
 });
+
+// Initialize theme icon based on current theme
+themeIcon.textContent = body.classList.contains("dark") ? "🔆" : "🌙";
+themeCheckbox.checked = body.classList.contains("dark");
 
 /* Mobile Navigation */
 function openSidebar() {
