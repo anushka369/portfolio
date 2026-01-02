@@ -547,9 +547,11 @@ body.dark .contact-item:hover .icon {
     padding: 12px 15px;
   }
 
+  /* Keep sidebar responsive - don't override the mobile navigation */
   .nav-links {
-    width: 100%;
-    max-width: 100%;
+    width: 60vw; /* Slightly wider on very small screens */
+    max-width: 280px; /* Smaller max width for tiny screens */
+    min-width: 200px; /* Smaller min width for tiny screens */
   }
 
   .hero-card {
