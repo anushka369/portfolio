@@ -118,7 +118,7 @@ p {
   width: 100%;
   padding: 14px 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   z-index: 1000;
 
@@ -134,12 +134,14 @@ p {
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  /* Keep logo on left for desktop */
+  /* Position logo in top-left corner for desktop */
+  top: 10px;
+  left: 20px;
 }
 
 .logo-emoji {
   font-size: 2rem;
+  margin-left: 10px;
 }
 
 .logo-text {
@@ -170,18 +172,30 @@ p {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 100%;
-  padding: 0px 50px 0px 20px;
+  gap: 30px;
   transition: transform 0.3s ease;
 }
 
+/* Hide theme toggle container on desktop */
+.theme-toggle-container {
+  display: none;
+}
+
 .nav-links a {
-  margin-left: 24px;
   text-decoration: none;
   font-size: 0.95rem;
   color: inherit;
   position: relative;
   transition: color 0.3s ease;
+}
+
+/* Remove underlines from desktop navbar links in dark mode */
+body.dark .nav-links a {
+  text-decoration: none;
+}
+
+body.dark .nav-links a:hover {
+  text-decoration: none;
 }
 
 /* Close button (Hidden on Desktop) */
@@ -284,6 +298,15 @@ p {
   transform: translateY(-2px);
 }
 
+/* Remove underlines from CTA buttons in dark theme */
+body.dark .cta a {
+  text-decoration: none;
+}
+
+body.dark .cta a:hover {
+  text-decoration: none;
+}
+
 /* ================================
    🩰 GRID & CARDS
 ================================ */
@@ -357,6 +380,8 @@ p {
   font-size: 0.9rem;
   letter-spacing: 1px;
   opacity: 0.85;
+  text-decoration: none; /* Remove underline from text by default */
+  transition: 0.3s;
 }
 
 .contact-item:hover .icon {
@@ -374,6 +399,31 @@ body.dark .contact-item:hover .icon {
 
 .contact-item:hover p {
   color: var(--pink-hot);
+  text-decoration: underline; /* Add underline only to text on hover */
+}
+
+/* Remove underlines from contact items completely */
+.contact-item,
+.contact-item:hover {
+  text-decoration: none;
+}
+
+/* Dark theme contact item styling */
+body.dark .contact-item {
+  text-decoration: none;
+}
+
+body.dark .contact-item:hover {
+  text-decoration: none;
+}
+
+body.dark .contact-item p {
+  text-decoration: none; /* Remove underline from text by default in dark theme */
+}
+
+body.dark .contact-item:hover p {
+  color: var(--pink-hot);
+  text-decoration: underline; /* Add underline only to text on hover in dark theme */
 }
 
 /* ================================
@@ -417,7 +467,7 @@ body.dark .contact-item:hover .icon {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--pink-dark);
+  background-color: var(--pink-accent); /* Light pink for light theme */
   transition: 0.4s;
   border-radius: 30px;
 }
@@ -435,7 +485,7 @@ body.dark .contact-item:hover .icon {
 }
 
 input:checked + .slider {
-  background-color: var(--pink-accent);
+  background-color: var(--pink-hot); /* Brighter pink when toggled in light theme */
 }
 
 input:checked + .slider:before {
@@ -444,11 +494,34 @@ input:checked + .slider:before {
 
 /* Dark mode slider colors */
 body.dark .slider {
-  background-color: var(--pink-accent);
+  background-color: var(--pink-dark); /* Dark pink for dark theme */
 }
 
 body.dark input:checked + .slider {
-  background-color: var(--pink-dark);
+  background-color: var(--pink-accent); /* Lighter pink when toggled in dark theme */
+}
+
+/* Desktop Theme Toggle */
+.desktop-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background: var(--pink-dark);
+  color: #fff;
+  border-radius: 50%;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 1100;
+  display: block;
+}
+
+/* Hide desktop theme toggle on mobile */
+@media (max-width: 768px) {
+  .desktop-theme-toggle {
+    display: none;
+  }
 }
 
 /* ================================
@@ -500,7 +573,6 @@ body.dark input:checked + .slider {
     background: var(--bg-card);
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
     padding: 0; /* Remove padding to control spacing better */
     transform: translateX(-100%); /* Changed from translateX(100%) to translateX(-100%) */
     transition: transform 0.3s ease;
@@ -542,6 +614,15 @@ body.dark input:checked + .slider {
     background-color: rgba(244, 166, 193, 0.3);
   }
 
+  /* Show theme toggle in mobile sidebar */
+  .theme-toggle-container {
+    display: flex;
+  }
+
+  .close-btn:hover {
+    background-color: rgba(244, 166, 193, 0.3);
+  }
+
   /* Show overlay in mobile */
   .overlay {
     display: block;
@@ -571,6 +652,15 @@ body.dark input:checked + .slider {
   /* Remove cute underline on mobile */
   .nav-links a::after {
     display: none;
+  }
+
+  /* Remove underlines from sidebar navigation in dark theme */
+  body.dark .nav-links a {
+    text-decoration: none;
+  }
+
+  body.dark .nav-links a:hover {
+    text-decoration: none;
   }
 
   /* Hero section adjustments */
@@ -618,6 +708,7 @@ body.dark input:checked + .slider {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1010;
+    margin-left: 0; /* Reset margin for mobile */
   }
 
   .logo a {
@@ -704,6 +795,15 @@ body.dark input:checked + .slider {
     display: none;
   }
 
+  /* Remove underlines from sidebar navigation in dark theme */
+  body.dark .nav-links a {
+    text-decoration: none;
+  }
+
+  body.dark .nav-links a:hover {
+    text-decoration: none;
+  }
+
   .hero-card {
     padding: 30px 20px;
     margin: 0 10px;
@@ -779,5 +879,85 @@ footer {
     outline-offset: 2px;
     background-color: rgba(244, 166, 193, 0.1);
     border-radius: 4px;
+  }
+}
+
+/* ---------------------------
+   Desktop-only layout tweaks
+   - hide mobile slider on desktop
+   - pin swan logo top-left on desktop
+   - pin desktop theme button top-right
+---------------------------- */
+
+/* Apply only for desktop widths */
+@media (min-width: 769px) {
+  /* Ensure the mobile slider container (in sidebar) is hidden on desktop */
+  .theme-toggle-container {
+    display: none !important;
+  }
+
+  /* Position logo at top-left (desktop) */
+  .logo {
+    position: fixed;
+    top: 18px;
+    left: 20px;
+    transform: none; /* remove any centering transform */
+    z-index: 1200;
+  }
+
+  /* Move desktop theme button to top-right */
+  .desktop-theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 1250;
+    display: block; /* ensure visible on desktop */
+  }
+
+  /* Hide the hamburger on desktop (safety) */
+  .hamburger {
+    display: none !important;
+  }
+
+  /* Ensure the nav stays centered/inline on desktop */
+  .nav-links {
+    transform: none !important;
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* If your .logo was centered on mobile via absolute centering, remove those transforms for desktop */
+  .logo a {
+    display: inline-block;
+  }
+}
+
+/* For mobile (keep slider visible in the sidebar) */
+@media (max-width: 768px) {
+  .theme-toggle-container {
+    display: flex !important;
+  }
+
+  /* center logo on small screens (existing rules preserved) */
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1010;
+  }
+
+  /* hide desktop-themed button on mobile (if not already) */
+  .desktop-theme-toggle {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  body.dark .nav-links a::after {
+    opacity: 0 !important;
   }
 }

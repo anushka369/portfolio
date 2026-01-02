@@ -1,22 +1,40 @@
 const body = document.body;
 const themeCheckbox = document.getElementById('theme-checkbox');
 const themeIcon = document.getElementById('theme-icon');
+const desktopThemeToggle = document.getElementById('desktop-theme-toggle');
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const navLinks = document.getElementById('nav-links');
 const closeBtn = document.getElementById('close-btn');
 const overlay = document.getElementById('overlay');
 
-/* Theme Toggle */
-themeCheckbox.addEventListener("change", () => {
+/* Theme Toggle Functions */
+function toggleTheme() {
   body.classList.toggle("dark");
   body.classList.toggle("light");
-  themeIcon.textContent = body.classList.contains("dark") ? "🔆" : "🌙";
-  themeCheckbox.checked = body.classList.contains("dark");
-});
+  const isDark = body.classList.contains("dark");
+  
+  // Update mobile slider
+  if (themeIcon) themeIcon.textContent = isDark ? "🔆" : "🌙";
+  if (themeCheckbox) themeCheckbox.checked = isDark;
+  
+  // Update desktop button
+  if (desktopThemeToggle) desktopThemeToggle.textContent = isDark ? "🔆" : "🌙";
+}
 
-// Initialize theme icon based on current theme
-themeIcon.textContent = body.classList.contains("dark") ? "🔆" : "🌙";
-themeCheckbox.checked = body.classList.contains("dark");
+/* Theme Toggle Event Listeners */
+if (themeCheckbox) {
+  themeCheckbox.addEventListener("change", toggleTheme);
+}
+
+if (desktopThemeToggle) {
+  desktopThemeToggle.addEventListener("click", toggleTheme);
+}
+
+// Initialize theme icons based on current theme
+const isDark = body.classList.contains("dark");
+if (themeIcon) themeIcon.textContent = isDark ? "🔆" : "🌙";
+if (themeCheckbox) themeCheckbox.checked = isDark;
+if (desktopThemeToggle) desktopThemeToggle.textContent = isDark ? "🔆" : "🌙";
 
 /* Mobile Navigation */
 function openSidebar() {

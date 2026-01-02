@@ -18,20 +18,31 @@
 <body class="light">
   <!-- HEADER -->
   <header class="site-header">
-    <!-- Hamburger Menu Button (Mobile) -->
-    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
-      ☰
-    </button>
-    
+    <!-- Swan Logo (Desktop: top-left, Mobile: centred) -->
     <div class="logo">
       <div class="logo-emoji">
           <a href="#home" style="text-decoration: none;">🦢</a>
       </div>
     </div>
 
+    <!-- Hamburger Menu Button (Mobile) -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+      ☰
+    </button>
+    
     <!-- Navigation -->
     <nav class="nav-links" id="nav-links">
       <button class="close-btn" id="close-btn" aria-label="Close navigation menu">✕</button>
+      
+      <!-- Theme Toggle Slider in Sidebar -->
+      <div class="theme-toggle-container">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+        <label class="theme-slider">
+          <input type="checkbox" id="theme-checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+      
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -42,8 +53,8 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle">🌙</button>
+    <!-- Desktop Theme Toggle -->
+    <button class="desktop-theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">🌙</button>
 
     <!-- Overlay for mobile sidebar -->
     <div class="overlay" id="overlay"></div>
@@ -253,19 +264,19 @@
     <div class="grid">
       <div class="card">
         <h3>Top 10 Performer in React.js HackerRank Contest</h3>
-        <p style="margin-bottom: 10px; color: gray;"> SRM ACM SIGKDD Student Chapter | <a href="https://drive.google.com/file/d/1FbFu4vf46yTB9mA_Lmqbl5aueVprxSyJ/view?usp=drive_link" target="_blank">View Certificate</a> </p>
+        <p style="margin-bottom: 10px; color: gray;"> SRM ACM SIGKDD Student Chapter | <a href="https://drive.google.com/file/d/1xXa9nnWCzDLLmdPSapSqyHIY7tiA4T_c/view?usp=drive_link" target="_blank">View Certificate</a> </p>
         <p>A college-level coding competition which tested advanced React skills, including component architecture, performance optimization, real-time debugging, routing, state and event management.</p>
       </div>
 
       <div class="card">
         <h3>4th Place in Parenthesis 1.0 (Hack & Conquer)</h3>
-        <p style="margin-bottom: 10px; color: gray;"> Qwiklabs Developer Club SRM | <a href="https://drive.google.com/file/d/1FbFu4vf46yTB9mA_Lmqbl5aueVprxSyJ/view?usp=drive_link" target="_blank">View Certificate</a> </p>
+        <p style="margin-bottom: 10px; color: gray;"> Qwiklabs Developer Club SRM | <a href="https://drive.google.com/file/d/1GuIEBbyTJLpKzi27h8FbaCvJFUiHE3F5/view?usp=drive_link" target="_blank">View Certificate</a> </p>
         <p>A competitive coding contest focused on Data Structures and Algorithms (DSA), where I solved algorithmic challenges under time constraints, enhancing my problem-solving, logical thinking, and coding efficiency.</p>
       </div>
 
       <div class="card">
         <h3>2nd Prize in Code in Objects Challenge</h3>
-        <p style="margin-bottom: 10px; color: gray;"> Department of Data Science and Business Systems SRM | <a href="https://drive.google.com/file/d/1FbFu4vf46yTB9mA_Lmqbl5aueVprxSyJ/view?usp=drive_link" target="_blank">View Certificate</a> </p>
+        <p style="margin-bottom: 10px; color: gray;"> Department of Data Science and Business Systems SRM | <a href="https://drive.google.com/file/d/1N20VK0EFG132UWWrAay_w_7A19Q7Enkv/view?usp=drive_link" target="_blank">View Certificate</a> </p>
         <p>The contest tested core OOP skills across three rounds — 25 MCQs, 5 programming tasks and a real-world OOP application — helping to sharpen software design, abstraction and problem-solving under time pressure.</p>
       </div>
 
