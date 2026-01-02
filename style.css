@@ -547,11 +547,103 @@ body.dark .contact-item:hover .icon {
     padding: 12px 15px;
   }
 
+  /* Ensure hamburger button is visible on small screens */
+  .hamburger {
+    display: block;
+    position: relative;
+    margin-right: auto;
+  }
+
+  /* Center the logo on mobile only */
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1010;
+  }
+
+  .logo a {
+    display: block;
+    padding: 5px;
+  }
+
   /* Keep sidebar responsive - don't override the mobile navigation */
   .nav-links {
     width: 60vw; /* Slightly wider on very small screens */
     max-width: 280px; /* Smaller max width for tiny screens */
     min-width: 200px; /* Smaller min width for tiny screens */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: var(--bg-card);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1100;
+    overflow-y: auto;
+  }
+
+  /* Show sidebar when active */
+  .nav-links.show {
+    transform: translateX(0);
+  }
+
+  /* Show close button in mobile */
+  .close-btn {
+    display: block;
+    position: sticky;
+    top: 15px;
+    right: 15px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    background-color: rgba(244, 166, 193, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1101;
+  }
+
+  .close-btn:hover {
+    background-color: rgba(244, 166, 193, 0.3);
+  }
+
+  /* Show overlay in mobile */
+  .overlay {
+    display: block;
+  }
+
+  /* Mobile navigation links styling */
+  .nav-links a {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    width: calc(100% - 40px);
+    border-bottom: 1px solid rgba(244, 166, 193, 0.2);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    margin-left: 20px;
+  }
+
+  .nav-links a:first-of-type {
+    margin-top: 0;
+  }
+
+  .nav-links a:hover {
+    color: var(--pink-hot);
+    padding-left: 30px;
+  }
+
+  /* Remove cute underline on mobile */
+  .nav-links a::after {
+    display: none;
   }
 
   .hero-card {
