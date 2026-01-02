@@ -1,6 +1,9 @@
 const body = document.body;
 const toggle = document.querySelector(".theme-toggle");
-const floatingContainer = document.querySelector(".floating-container");
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const navLinks = document.getElementById('nav-links');
+const closeBtn = document.getElementById('close-btn');
+const overlay = document.getElementById('overlay');
 
 /* Theme Toggle */
 toggle.addEventListener("click", () => {
@@ -9,19 +12,58 @@ toggle.addEventListener("click", () => {
   toggle.textContent = body.classList.contains("dark") ? "🔆" : "🌙";
 });
 
-// /* Floating bows & hearts */
-// const symbols = ["🎀", "💗", "💖", "🩰"];
+/* Mobile Navigation */
+function openSidebar() {
+  navLinks.classList.add('show');
+  hamburgerBtn.setAttribute('aria-expanded', 'true');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
 
-// function createFloating() {
-//   const span = document.createElement("span");
-//   span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-//   span.style.left = Math.random() * 100 + "vw";
-//   span.style.animationDuration = 8 + Math.random() * 6 + "s";
-//   span.classList.add("floating");
+function closeSidebar() {
+  navLinks.classList.remove('show');
+  hamburgerBtn.setAttribute('aria-expanded', 'false');
+  overlay.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scrolling
+}
 
-//   floatingContainer.appendChild(span);
+// Event listeners
+hamburgerBtn.addEventListener('click', openSidebar);
+closeBtn.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
 
-//   setTimeout(() => span.remove(), 14000);
-// }
+// Close sidebar when clicking on navigation links (mobile)
+const navLinkItems = document.querySelectorAll('.nav-links a');
+const logoLink = document.querySelector('.logo a'); // Add logo link
 
-// setInterval(createFloating, 800);
+navLinkItems.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      closeSidebar();
+    }
+  });
+});
+
+// Close sidebar when clicking logo on mobile
+if (logoLink) {
+  logoLink.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      closeSidebar();
+    }
+  });
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    closeSidebar();
+    navLinks.classList.remove('show');
+  }
+});
+
+// Close sidebar on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLinks.classList.contains('show')) {
+    closeSidebar();
+  }
+});

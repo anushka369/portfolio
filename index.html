@@ -18,25 +18,36 @@
 <body class="light">
   <!-- HEADER -->
   <header class="site-header">
-  <!-- Theme Toggle -->
-  <button class="theme-toggle">🌙</button>
-  <div class="logo">
-    <div class="logo-emoji">
-        <a href="#home" style="text-decoration: none;">🦢</a>
+    <!-- Hamburger Menu Button (Mobile) -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+      ☰
+    </button>
+    
+    <div class="logo">
+      <div class="logo-emoji">
+          <a href="#home" style="text-decoration: none;">🦢</a>
+      </div>
     </div>
-  </div>
 
-  <nav class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#experience">Experience</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    <!-- Navigation -->
+    <nav class="nav-links" id="nav-links">
+      <button class="close-btn" id="close-btn" aria-label="Close navigation menu">✕</button>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#experience">Experience</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle">🌙</button>
+
+    <!-- Overlay for mobile sidebar -->
+    <div class="overlay" id="overlay"></div>
+  </header>
 
   <!-- HERO -->
   <section class="hero" id="home">

@@ -52,6 +52,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Link styling for light mode */
+a {
+  color: var(--pink-dark);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--pink-hot);
+  text-decoration: underline;
+}
+
+/* Link styling for dark mode */
+body.dark a {
+  color: var(--text-main); /* Light pink text color */
+  text-decoration: underline;
+}
+
+body.dark a:hover {
+  color: var(--pink-accent);
+  text-decoration: underline;
+}
+
 section {
   padding: 80px 8%;
 }
@@ -103,12 +125,17 @@ p {
   backdrop-filter: blur(10px);
   background: var(--bg-header);
   transition: background 0.4s ease;
+  
+  /* Ensure navbar is always visible */
+  visibility: visible;
+  opacity: 1;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 8px;
+  /* Keep logo on left for desktop */
 }
 
 .logo-emoji {
@@ -120,12 +147,32 @@ p {
   color: var(--pink-hot);
 }
 
-/* Navigation */
+/* Hamburger Menu Button (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  z-index: 1050;
+}
+
+.hamburger:hover {
+  background-color: rgba(244, 166, 193, 0.2);
+}
+
+/* Navigation - Desktop */
 .nav-links {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   width: 100%;
   padding: 0px 50px 0px 20px;
+  transition: transform 0.3s ease;
 }
 
 .nav-links a {
@@ -134,6 +181,40 @@ p {
   font-size: 0.95rem;
   color: inherit;
   position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Close button (Hidden on Desktop) */
+.close-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  align-self: flex-end;
+  margin-bottom: 20px;
+  z-index: 1002;
+  position: relative;
+}
+
+/* Overlay (Hidden on Desktop) */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
 }
 
 /* Cute underline */
@@ -283,6 +364,14 @@ p {
   text-shadow: 0 0 12px rgba(255, 77, 136, 0.6);
 }
 
+/* Enhanced glow effect for dark mode */
+body.dark .contact-item:hover .icon {
+  text-shadow: 
+    0 0 12px rgba(255, 77, 136, 0.8),
+    0 0 24px rgba(255, 77, 136, 0.4),
+    0 0 36px rgba(255, 77, 136, 0.2);
+}
+
 .contact-item:hover p {
   color: var(--pink-hot);
 }
@@ -307,13 +396,178 @@ p {
 /* ================================
    📱 RESPONSIVE
 ================================ */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* Header adjustments */
+  .site-header {
+    padding: 14px 20px;
+    justify-content: flex-start;
+    position: fixed; /* Ensure it stays fixed */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  /* Show hamburger menu on the left */
+  .hamburger {
+    display: block;
+    position: relative;
+    margin-right: auto;
+  }
+
+  /* Center the logo on mobile only */
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1010; /* Ensure it's clickable above other elements */
+  }
+
+  .logo a {
+    display: block;
+    padding: 5px; /* Add some padding for easier clicking */
+  }
+
+  /* Hide desktop navigation and transform to mobile sidebar - LEFT SIDE */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0; /* Changed from right: 0 to left: 0 */
+    height: 100vh;
+    width: 280px;
+    max-width: 80vw;
+    background: var(--bg-card);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0; /* Remove padding to control spacing better */
+    transform: translateX(-100%); /* Changed from translateX(100%) to translateX(-100%) */
+    transition: transform 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1); /* Changed shadow direction */
+    z-index: 1001;
+    overflow-y: auto;
+  }
+
+  /* Sidebar content wrapper */
+  .nav-links > * {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Show sidebar when active */
+  .nav-links.show {
+    transform: translateX(0);
+  }
+
+  /* Show close button in mobile - positioned at top right of sidebar */
+  .close-btn {
+    display: block;
+    position: sticky; /* Changed from absolute to sticky */
+    top: 15px;
+    right: 15px;
+    margin-bottom: 20px;
+    margin-left: auto; /* Push to right side */
+    background-color: rgba(244, 166, 193, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1002;
+  }
+
+  .close-btn:hover {
+    background-color: rgba(244, 166, 193, 0.3);
+  }
+
+  /* Show overlay in mobile */
+  .overlay {
+    display: block;
+  }
+
+  /* Mobile navigation links styling */
+  .nav-links a {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 12px 20px; /* Added left and right padding */
+    font-size: 1.1rem;
+    width: calc(100% - 40px); /* Adjust width to account for padding */
+    border-bottom: 1px solid rgba(244, 166, 193, 0.2);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    margin-left: 20px; /* Add left margin for spacing from edge */
+  }
+
+  .nav-links a:first-of-type {
+    margin-top: 0; /* Remove extra top margin */
+  }
+
+  .nav-links a:hover {
+    color: var(--pink-hot);
+    padding-left: 30px; /* Increase left padding on hover for nice effect */
+  }
+
+  /* Remove cute underline on mobile */
+  .nav-links a::after {
+    display: none;
+  }
+
+  /* Hero section adjustments */
   h1 {
     font-size: 2.3rem;
   }
 
   .hero-card {
-    padding: 40px;
+    padding: 40px 30px;
+    margin: 0 20px;
+  }
+
+  /* Contact icons responsive */
+  .contact-icons {
+    gap: 40px;
+  }
+
+  /* Grid adjustments */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Section padding adjustments */
+  section {
+    padding: 60px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    padding: 12px 15px;
+  }
+
+  .nav-links {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-card {
+    padding: 30px 20px;
+    margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-icons {
+    gap: 30px;
+  }
+
+  .contact-item .icon {
+    font-size: 2rem;
   }
 }
 
@@ -346,3 +600,29 @@ footer {
       font-size: 0.9rem;
       opacity: 0.8;
     }
+
+/* ================================
+   📱 Collapsible Navbar (Mobile)
+================================ */
+
+/* Accessibility improvements */
+.hamburger:focus,
+.close-btn:focus {
+  outline: 2px solid var(--pink-hot);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for better UX */
+.nav-links a {
+  transition: all 0.3s ease;
+}
+
+/* Focus states for mobile navigation */
+@media (max-width: 768px) {
+  .nav-links a:focus {
+    outline: 2px solid var(--pink-hot);
+    outline-offset: 2px;
+    background-color: rgba(244, 166, 193, 0.1);
+    border-radius: 4px;
+  }
+}
